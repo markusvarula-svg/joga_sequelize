@@ -5,7 +5,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/joga_sequelize');
+const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/joga_mysql');
 
 sequelize
     .authenticate()
@@ -17,8 +17,10 @@ sequelize
     });
 
 const articleRouter = require('./routes/article');
+const authorRouter = require('./routes/author');
 app.use('/', articleRouter);
 app.use('/article', articleRouter);
+app.use('/author', authorRouter);
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
